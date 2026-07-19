@@ -1,7 +1,11 @@
-# Zefia — showcase
+# Portfolio — showcase site
 
-Zefia er en iOS-app til hjemmemonitorering af KOL via spirometri og VOC-breathomics, parret via Bluetooth med en pen-formet hardwareenhed.
+Personlig portefølje for Anders Juul Madsen: iOS-udvikler med fokus på klinisk software og on-device AI.
 
-Dette repo er kun en **offentlig præsentationsside** (landing page) for projektet — det indeholder ingen app-kildekode, kliniske algoritmer eller andet sensitivt materiale. Selve appen er closed-source.
+Dette repo indeholder **kun præsentationssider** (statisk HTML) — ingen app-kildekode, kliniske algoritmer eller andet sensitivt materiale. De faktiske apps er closed-source.
 
-🔗 Live side: https://andydtu.github.io/zefia-showcase/
+- `/` — porteføljeforside
+- `/zefia/` — Zefia (KOL-monitorering: spirometri + VOC-breathomics)
+- `/eq-foresight/` — Eq Foresight (AI-forudsigelse af hypoglykæmi for type 1-diabetikere)
+
+🔗 Live side: https://zefia.dk

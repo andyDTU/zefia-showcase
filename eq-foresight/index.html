@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eq Foresight — AI Hypoglycemia Prediction</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0a0a0f;
+            color: #f5f5f7;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        header {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, #0a0a0f 0%, #111118 100%);
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            color: #a1a1aa;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+        h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tagline {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: #a1a1aa;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-weight: 400;
+        }
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+        }
+        .badges img {
+            height: 28px;
+        }
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: #007aff;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .cta:hover {
+            transform: translateY(-2px);
+            background: #0066d4;
+        }
+        section {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #f5f5f7;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .feature {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 28px;
+            transition: background 0.2s;
+        }
+        .feature:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .feature h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #f5f5f7;
+        }
+        .feature p {
+            font-size: 14px;
+            color: #a1a1aa;
+            line-height: 1.5;
+        }
+        .architecture {
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px;
+            padding: 32px;
+            overflow-x: auto;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #a1a1aa;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .architecture pre {
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 204, 0, 0.08);
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            border-radius: 10px;
+            color: #ffcc00;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #ffcc00;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .privacy {
+            background: rgba(52, 199, 89, 0.06);
+            border: 1px solid rgba(52, 199, 89, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .privacy h3 {
+            color: #34c759;
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .privacy ul {
+            list-style: none;
+            padding: 0;
+        }
+        .privacy li {
+            padding: 6px 0;
+            color: #a1a1aa;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .privacy li::before {
+            content: "✓";
+            color: #34c759;
+            font-weight: bold;
+        }
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        a { color: #007aff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link {
+            display: inline-block;
+            font-size: 13px;
+            color: #71717a;
+            margin-bottom: 28px;
+        }
+        .back-link:hover { color: #f5f5f7; }
+        @media (max-width: 600px) {
+            header { padding: 60px 0 40px; }
+            section { padding: 40px 0; }
+            .feature { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <a href="/" class="back-link">← Portfolio</a>
+        <div class="badge">iOS APP · ON-DEVICE AI · HEALTH TECH</div>
+        <h1>Eq Foresight</h1>
+        <p class="tagline">AI-driven hypoglycemia prediction — 30 minutes before it happens.</p>
+        <div class="badges">
+            <img src="https://img.shields.io/badge/platform-iOS%2017+-000000?style=flat-square&logo=apple&logoColor=white" alt="iOS 17+">
+            <img src="https://img.shields.io/badge/ML-CoreML-FF6F00?style=flat-square&logo=coreml&logoColor=white" alt="CoreML">
+            <img src="https://img.shields.io/badge/health-HealthKit-FF2D55?style=flat-square&logo=apple-health&logoColor=white" alt="HealthKit">
+            <img src="https://img.shields.io/badge/language-Swift%205.9-F05138?style=flat-square&logo=swift&logoColor=white" alt="Swift">
+        </div>
+        <a href="https://github.com/andyDTU/eq-foresight" class="cta">View on GitHub →</a>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <h2>What It Does</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔮</div>
+                <h3>30-Minute Prediction</h3>
+                <p>CoreML cascade of 4 models predicts hypoglycemia at 5, 10, 15, and 30-minute horizons — entirely on-device.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Real-Time Dashboard</h3>
+                <p>Live glucose chart with a dotted prediction line and confidence bands. See where you're heading, not just where you are.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔔</div>
+                <h3>Smart Alerts</h3>
+                <p>Escalating notifications (warning → alarm → pump stop) with intelligent cooldowns and night-mode sensitivity.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🏃</div>
+                <h3>Activity Mode</h3>
+                <p>Automatically adjusts glucose targets during exercise to prevent workout-induced lows. Post-exercise monitoring included.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌙</div>
+                <h3>Morning Briefing</h3>
+                <p>Automated overnight analysis: "Your night was stable. Lowest point 4.2 mmol/L at 03:15."</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎛</div>
+                <h3>Auto-Tune</h3>
+                <p>Analyzes 24 hours of data to suggest personalized insulin sensitivity and carb ratio adjustments.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <h3>Widget & Live Activity</h3>
+                <p>Current glucose, risk trend, and quick-launch on your Lock Screen, Home Screen, and Dynamic Island.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🧠</div>
+                <h3>Privacy-First AI</h3>
+                <p>All inference runs locally. No cloud. No subscription. Your health data never leaves your device.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Architecture</h2>
+        <div class="architecture">
+<pre>
+┌─────────────────────────────────────────────┐
+│              Eq Foresight iOS App             │
+│  ┌─────────────┐  ┌─────────────┐  ┌────────┐ │
+│  │  Dashboard  │  │   History   │  │Settings│ │
+│  │   (SwiftUI) │  │   (SwiftUI) │  │(SwiftUI│ │
+│  └──────┬──────┘  └──────┬──────┘  └───┬────┘ │
+│         │                │             │      │
+│  ┌──────┴────────────────┴─────────────┴────┐ │
+│  │         DashboardViewModel (MVVM)         │ │
+│  │  ┌────────────┐  ┌────────────────────┐  │ │
+│  │  │ DataBuffer │  │  InferenceEngine   │  │ │
+│  │  │(23 features│  │  ┌──────────────┐  │  │ │
+│  │  │ 36-48 steps│  │  │ HypoPredictor│  │  │ │
+│  │  │  4h history│  │  │  4 CoreML    │  │  │ │
+│  │  └─────┬──────┘  │  │   models     │  │  │ │
+│  │        │         │  └──────────────┘  │  │ │
+│  └────────┼────────┴────────────────────┘  │ │
+│           │                                │
+│  ┌────────┴────────┐  ┌────────────────┐ │
+│  │ NightscoutService│  │ HealthKitService│ │
+│  │  (Glucose +       │  │  (Heart Rate,   │ │
+│  │   Treatments)     │  │   Blood Glucose)│ │
+│  └───────────────────┘  └────────────────┘ │
+└─────────────────────────────────────────────┘
+</pre>
+        </div>
+        <p style="margin-top: 20px; text-align: center;">
+            <a href="docs/architecture.md">Read the full architecture deep dive →</a>
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="privacy">
+            <h3>🔒 Privacy & Ethics</h3>
+            <ul>
+                <li>All AI inference runs on-device. No server, no cloud processing.</li>
+                <li>No automated dosing. The app warns and recommends, but never controls insulin.</li>
+                <li>Open Nightscout integration. Users own their data.</li>
+                <li>No data monetization. No tracking. No analytics without consent.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Status</h2>
+        <div class="status">
+            <div class="status-dot"></div>
+            Active Development — late-stage, on-device inference & widgets functional. Beta testing planned.
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Source Code</h2>
+        <p style="color: #a1a1aa; margin-bottom: 20px;">
+            The full source code for the iOS app and ML training pipeline is maintained in private repositories.
+            Access is granted to potential employers, collaborators, and investors upon request.
+        </p>
+        <a href="https://github.com/andyDTU/eq-foresight" class="cta" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);">
+            View Showcase on GitHub →
+        </a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>Built by <a href="https://github.com/andyDTU">andyDTU</a> · iOS Engineer & ML Engineer focused on health technology.</p>
+        <p style="margin-top: 8px; opacity: 0.6;">Proactive. Private. Powerful.</p>
+    </div>
+</footer>
+
+</body>
+</html>
