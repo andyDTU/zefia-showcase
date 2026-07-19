@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zefia — Klinisk Lungemonitorering</title>
     <meta name="description" content="Zefia kombinerer spirometri og VOC-breathomics i én pen-formet enhed. Præcis hjemmemonitorering af KOL med klinisk validerede referenceværdier.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Zefia — Klinisk Lungemonitorering">
+    <meta property="og:description" content="Zefia kombinerer spirometri og VOC-breathomics i én pen-formet enhed. Præcis hjemmemonitorering af KOL med klinisk validerede referenceværdier.">
+    <meta property="og:url" content="https://zefia.dk/zefia/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Zefia — Klinisk Lungemonitorering">
+    <meta name="twitter:description" content="Hjemmemonitorering af KOL via spirometri og VOC-breathomics.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230F6E56%22/><path d=%22M6 13h14a3 3 0 10-3-3%22 stroke=%22white%22 stroke-width=%222.4%22 fill=%22none%22 stroke-linecap=%22round%22/><path d=%22M6 19h17a3 3 0 11-3 3%22 stroke=%22white%22 stroke-width=%222.4%22 fill=%22none%22 stroke-linecap=%22round%22/></svg>">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -12,6 +20,7 @@
             --green:       #0F6E56;
             --green-dark:  #0A4F3E;
             --green-light: #E8F5F1;
+            --dark:        #142E27;
             --gray-100:    #F5F5F5;
             --gray-200:    #E8E8E8;
             --gray-400:    #9CA3AF;
@@ -150,6 +159,16 @@
             max-width: 520px;
             margin: 0 auto 40px;
         }
+        .meta-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+            margin-bottom: 18px;
+        }
+        .meta-row span:not(:last-child)::after { content: "·"; margin-left: 10px; color: var(--gray-400); }
         .cta-group {
             display: flex;
             gap: 12px;
@@ -244,6 +263,71 @@
         .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
         .status-text { font-size: 0.8125rem; font-weight: 600; color: var(--green); }
 
+        /* ── STATS ── */
+        .stats {
+            padding: 48px 0;
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+        .stat-value { font-size: 1.75rem; font-weight: 700; color: var(--green); letter-spacing: -0.01em; }
+        .stat-label { font-size: 0.8125rem; color: var(--gray-500); margin-top: 4px; }
+
+        /* ── ARCHITECTURE ── */
+        .architecture { padding: 96px 0; background: var(--gray-100); }
+        .arch-diagram {
+            background: var(--dark);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            margin-top: 44px;
+        }
+        .arch-layer-label {
+            font-family: 'SF Mono', Menlo, Consolas, monospace;
+            font-size: 0.6875rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .arch-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 760px; margin: 0 auto; }
+        .arch-node {
+            flex: 1;
+            min-width: 150px;
+            max-width: 220px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 12px 16px;
+            text-align: center;
+        }
+        .arch-node strong {
+            display: block;
+            font-family: 'SF Mono', Menlo, Consolas, monospace;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.92);
+        }
+        .arch-node span { font-size: 0.6875rem; color: rgba(255,255,255,0.42); margin-top: 2px; display: block; }
+        .arch-arrow { text-align: center; color: rgba(255,255,255,0.22); font-size: 1.125rem; line-height: 1; margin: 10px 0; }
+
+        /* ── CASE STUDY ── */
+        .casestudy { padding: 96px 0; }
+        .casestudy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 52px;
+        }
+        .cs-item { border-top: 2px solid var(--green); padding-top: 16px; }
+        .cs-label { font-size: 0.75rem; font-weight: 700; color: var(--green); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .cs-item p { font-size: 0.9375rem; line-height: 1.7; color: var(--gray-700); }
+
         /* ── FEATURES ── */
         .features {
             padding: 96px 0;
@@ -314,7 +398,7 @@
         /* ── COMPLIANCE ── */
         .compliance {
             padding: 80px 0;
-            background: var(--gray-900);
+            background: var(--dark);
         }
         .compliance .section-head h2 { color: #fff; }
         .compliance .section-head p  { color: rgba(255,255,255,0.45); }
@@ -363,6 +447,9 @@
             .hero { padding: 56px 0 48px; }
             .features, .how { padding: 64px 0; }
             .compliance { padding: 56px 0; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+            .architecture, .casestudy { padding: 56px 0; }
+            .casestudy-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -374,9 +461,10 @@
         <div class="nav-inner">
             <a href="#" class="logo">
                 <div class="logo-mark">
-                    <svg viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 1C7.5 3.8 4 7.2 4 11.5a5 5 0 0010 0C14 7.2 10.5 3.8 9 1z" fill="white" opacity="0.9"/>
-                        <path d="M9 7c-.8 1.4-2 3-2 4.5a2 2 0 004 0C11 10 9.8 8.4 9 7z" fill="white"/>
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9h12.5a2.5 2.5 0 10-2.5-2.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 14h15a2.5 2.5 0 11-2.5 2.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 19h9a2 2 0 11-2 2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                 <span class="logo-name">Zefia</span>
@@ -384,6 +472,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Funktioner</a></li>
                 <li><a href="#how">Sådan virker det</a></li>
+                <li><a href="#architecture">Arkitektur</a></li>
                 <li><a href="#compliance">Compliance</a></li>
                 <li><a href="../">← Portefølje</a></li>
             </ul>
@@ -396,6 +485,9 @@
 <section class="hero">
     <div class="container">
         <span class="eyebrow">KOL-monitorering · GOLD 2025</span>
+        <div class="meta-row">
+            <span>Soloprojekt</span><span>iOS 17+</span><span>Kernefunktioner implementeret</span>
+        </div>
         <h1>Klinisk lungemonitorering<br>— direkte fra dit hjem</h1>
         <p class="hero-sub">Zefia kombinerer spirometri og VOC-breathomics i én pen-formet enhed. Præcise måledata, klinisk validerede referenceværdier og automatisk risikovurdering.</p>
         <div class="cta-group">
@@ -442,6 +534,30 @@
                     <div class="status-dot"></div>
                     <span class="status-text">Normal lungekapacitet · GOLD Grad 1</span>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── STATS ── -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-value">60</div>
+                <div class="stat-label">Automatiserede tests</div>
+            </div>
+            <div>
+                <div class="stat-value">10</div>
+                <div class="stat-label">Test-suiter (IEC 62304)</div>
+            </div>
+            <div>
+                <div class="stat-value">5</div>
+                <div class="stat-label">GLI-2012 etniske grupper</div>
+            </div>
+            <div>
+                <div class="stat-value">AES-256</div>
+                <div class="stat-label">Kryptering af kliniske data</div>
             </div>
         </div>
     </div>
@@ -534,6 +650,70 @@
                 <div class="step-num">3</div>
                 <h3>Se dine resultater</h3>
                 <p>Øjeblikkeligt dashboard med ALHI-score, FEV₁/FVC-værdier, VOC-fingeraftryk og trendanalyse. Del rapporten direkte med din lungelæge.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── ARCHITECTURE ── -->
+<section class="architecture" id="architecture">
+    <div class="container">
+        <div class="section-head">
+            <h2>Under motorhjelmen</h2>
+            <p>Én klinisk beregningsmotor, tre SwiftUI-flows, kryptering hele vejen igennem</p>
+        </div>
+        <div class="arch-diagram">
+            <div class="arch-layer-label">SwiftUI-lag</div>
+            <div class="arch-row">
+                <div class="arch-node"><strong>Test-flow</strong><span>SwiftUI</span></div>
+                <div class="arch-node"><strong>Dashboard</strong><span>SwiftUI</span></div>
+                <div class="arch-node"><strong>Historik / CAT</strong><span>SwiftUI</span></div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer-label">Klinisk motor</div>
+            <div class="arch-row">
+                <div class="arch-node"><strong>GLI-2012</strong><span>Spline-referenceværdier</span></div>
+                <div class="arch-node"><strong>GOLD 2025</strong><span>ABE-gruppering</span></div>
+                <div class="arch-node"><strong>ALHI-score</strong><span>Composite-indeks</span></div>
+                <div class="arch-node"><strong>BTPS-korrektion</strong><span>Temperatur/tryk</span></div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer-label">Analyse & sikkerhed</div>
+            <div class="arch-row">
+                <div class="arch-node"><strong>VOCAnomalyDetector</strong><span>Mahalanobis-distance</span></div>
+                <div class="arch-node"><strong>SecureStorage</strong><span>AES-256-GCM + audit</span></div>
+            </div>
+            <div class="arch-arrow">↓ BLE (GATT)</div>
+            <div class="arch-row">
+                <div class="arch-node"><strong>Zefia-munddel</strong><span>SDP810-500Pa + 5× BME688</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CASE STUDY ── -->
+<section class="casestudy">
+    <div class="container">
+        <div class="section-head">
+            <h2>Sådan tænkte jeg</h2>
+            <p>Fra klinisk problem til teknisk løsning</p>
+        </div>
+        <div class="casestudy-grid">
+            <div class="cs-item">
+                <span class="cs-label">Problem</span>
+                <p>KOL diagnosticeres og forværres ofte i det skjulte, fordi spirometri kræver et klinikbesøg. Patienter mærker sjældent gradvist lungefunktionstab, før det bliver alvorligt.</p>
+            </div>
+            <div class="cs-item">
+                <span class="cs-label">Tilgang</span>
+                <p>Kombinér to uafhængige signaler i én enhed — mekanisk (spirometri) og kemisk (VOC i udåndingsluft) — så tidlige tegn ét signal overser, kan fanges af det andet.</p>
+            </div>
+            <div class="cs-item">
+                <span class="cs-label">Udfordring</span>
+                <p>GLI-2012-referenceværdier findes kun som publicerede tabeller, ikke en API. Jeg måtte selv implementere Catmull-Rom spline-interpolation for at reproducere de kliniske referencekurver præcist — og validere det med 13 dedikerede tests.</p>
+            </div>
+            <div class="cs-item">
+                <span class="cs-label">Resultat</span>
+                <p>En klinisk motor med 60 IEC 62304-sporede tests, og en sammensat ALHI-score der giver patienten ét forståeligt tal i stedet for tre rå målinger.</p>
             </div>
         </div>
     </div>

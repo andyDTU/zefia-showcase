@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eq Foresight — AI-drevet hypoglykæmi-forudsigelse</title>
     <meta name="description" content="Eq Foresight forudsiger hypoglykæmi hos type 1-diabetikere 30 minutter før det sker — en kaskade af CoreML-modeller der kører fuldt on-device.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Eq Foresight — AI-drevet hypoglykæmi-forudsigelse">
+    <meta property="og:description" content="Eq Foresight forudsiger hypoglykæmi hos type 1-diabetikere 30 minutter før det sker — en kaskade af CoreML-modeller der kører fuldt on-device.">
+    <meta property="og:url" content="https://zefia.dk/eq-foresight/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Eq Foresight — AI-drevet hypoglykæmi-forudsigelse">
+    <meta name="twitter:description" content="AI-drevet forudsigelse af hypoglykæmi — 30 minutter før det sker.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%227%22 fill=%22%230B63CE%22/><path d=%22M6 19l5-8 4 5 6-10 4 6%22 stroke=%22white%22 stroke-width=%222.4%22 fill=%22none%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -12,6 +20,7 @@
             --blue:       #0B63CE;
             --blue-dark:  #084A9C;
             --blue-light: #E7F0FC;
+            --dark:       #0B1E33;
             --safe:       #16A34A;
             --safe-light: #E7F7EC;
             --gray-100:   #F5F5F5;
@@ -105,6 +114,16 @@
         }
         .hero h1 { max-width: 740px; margin: 0 auto 20px; }
         .hero-sub { font-size: 1.0625rem; line-height: 1.75; max-width: 540px; margin: 0 auto 40px; }
+        .meta-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            font-size: 0.8125rem;
+            color: var(--gray-500);
+            margin-bottom: 18px;
+        }
+        .meta-row span:not(:last-child)::after { content: "·"; margin-left: 10px; color: var(--gray-400); }
         .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .btn { display: inline-block; padding: 13px 26px; border-radius: var(--radius); font-size: 0.9375rem; font-weight: 600; text-decoration: none; transition: background 0.15s, transform 0.1s; }
         .btn-blue { background: var(--blue); color: #fff; }
@@ -143,6 +162,71 @@
         .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--safe); flex-shrink: 0; }
         .status-text { font-size: 0.8125rem; font-weight: 600; color: var(--safe); }
 
+        /* ── STATS ── */
+        .stats {
+            padding: 48px 0;
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+        .stat-value { font-size: 1.75rem; font-weight: 700; color: var(--blue); letter-spacing: -0.01em; }
+        .stat-label { font-size: 0.8125rem; color: var(--gray-500); margin-top: 4px; }
+
+        /* ── ARCHITECTURE ── */
+        .architecture { padding: 96px 0; background: var(--gray-100); }
+        .arch-diagram {
+            background: var(--dark);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            margin-top: 44px;
+        }
+        .arch-layer-label {
+            font-family: 'SF Mono', Menlo, Consolas, monospace;
+            font-size: 0.6875rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .arch-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 760px; margin: 0 auto; }
+        .arch-node {
+            flex: 1;
+            min-width: 150px;
+            max-width: 220px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 12px 16px;
+            text-align: center;
+        }
+        .arch-node strong {
+            display: block;
+            font-family: 'SF Mono', Menlo, Consolas, monospace;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.92);
+        }
+        .arch-node span { font-size: 0.6875rem; color: rgba(255,255,255,0.42); margin-top: 2px; display: block; }
+        .arch-arrow { text-align: center; color: rgba(255,255,255,0.22); font-size: 1.125rem; line-height: 1; margin: 10px 0; }
+
+        /* ── CASE STUDY ── */
+        .casestudy { padding: 96px 0; }
+        .casestudy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 52px;
+        }
+        .cs-item { border-top: 2px solid var(--blue); padding-top: 16px; }
+        .cs-label { font-size: 0.75rem; font-weight: 700; color: var(--blue); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .cs-item p { font-size: 0.9375rem; line-height: 1.7; color: var(--gray-700); }
+
         /* ── FEATURES ── */
         .features { padding: 96px 0; background: var(--gray-100); }
         .section-head { text-align: center; margin-bottom: 52px; }
@@ -180,7 +264,7 @@
         .step p   { font-size: 0.9rem; line-height: 1.7; }
 
         /* ── COMPLIANCE / PRIVACY ── */
-        .compliance { padding: 80px 0; background: var(--gray-900); }
+        .compliance { padding: 80px 0; background: var(--dark); }
         .compliance .section-head h2 { color: #fff; }
         .compliance .section-head p  { color: rgba(255,255,255,0.45); }
 
@@ -204,6 +288,9 @@
             .hero { padding: 56px 0 48px; }
             .features, .how { padding: 64px 0; }
             .compliance { padding: 56px 0; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+            .architecture, .casestudy { padding: 56px 0; }
+            .casestudy-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -224,6 +311,7 @@
             <ul class="nav-links">
                 <li><a href="#features">Funktioner</a></li>
                 <li><a href="#how">Sådan virker det</a></li>
+                <li><a href="#architecture">Arkitektur</a></li>
                 <li><a href="#privacy">Privatliv</a></li>
                 <li><a href="../">← Portefølje</a></li>
             </ul>
@@ -236,6 +324,9 @@
 <section class="hero">
     <div class="container">
         <span class="eyebrow">Hypoglykæmi-forudsigelse · Type 1-diabetes</span>
+        <div class="meta-row">
+            <span>Soloprojekt</span><span>iOS 17+</span><span>Under aktiv udvikling</span>
+        </div>
         <h1>AI-varsling<br>30 minutter før det sker</h1>
         <p class="hero-sub">Eq Foresight kombinerer HealthKit, CGM-data og en kaskade af CoreML-modeller for at forudsige hypoglykæmi, før symptomerne opstår — fuldt on-device, uden cloud og uden abonnement.</p>
         <div class="cta-group">
@@ -282,6 +373,30 @@
                     <div class="status-dot"></div>
                     <span class="status-text">Stabilt niveau · Ingen advarsel</span>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── STATS ── -->
+<section class="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div>
+                <div class="stat-value">4</div>
+                <div class="stat-label">CoreML-modeller i kaskade</div>
+            </div>
+            <div>
+                <div class="stat-value">23</div>
+                <div class="stat-label">Features pr. forudsigelse</div>
+            </div>
+            <div>
+                <div class="stat-value">&lt;50ms</div>
+                <div class="stat-label">On-device inferenstid</div>
+            </div>
+            <div>
+                <div class="stat-value">0</div>
+                <div class="stat-label">Data sendt til skyen</div>
             </div>
         </div>
     </div>
@@ -370,6 +485,70 @@
     </div>
 </section>
 
+<!-- ── ARCHITECTURE ── -->
+<section class="architecture" id="architecture">
+    <div class="container">
+        <div class="section-head">
+            <h2>Under motorhjelmen</h2>
+            <p>Fra rå sensordata til en kalibreret risikoprocent, fuldt on-device</p>
+        </div>
+        <div class="arch-diagram">
+            <div class="arch-layer-label">SwiftUI-lag</div>
+            <div class="arch-row">
+                <div class="arch-node"><strong>Dashboard</strong><span>SwiftUI</span></div>
+                <div class="arch-node"><strong>Historik</strong><span>SwiftUI</span></div>
+                <div class="arch-node"><strong>Indstillinger</strong><span>SwiftUI</span></div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer-label">ViewModel</div>
+            <div class="arch-row">
+                <div class="arch-node" style="max-width:260px;"><strong>DashboardViewModel</strong><span>MVVM, @MainActor</span></div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer-label">Model- & inferenslag</div>
+            <div class="arch-row">
+                <div class="arch-node"><strong>DataBuffer</strong><span>23 features, 48 steps</span></div>
+                <div class="arch-node"><strong>InferenceEngine</strong><span>Parallel kørsel</span></div>
+                <div class="arch-node"><strong>HypoPredictor</strong><span>4 CoreML-modeller</span></div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer-label">Dataservices</div>
+            <div class="arch-row">
+                <div class="arch-node"><strong>NightscoutService</strong><span>Glukose + behandling</span></div>
+                <div class="arch-node"><strong>HealthKitService</strong><span>Puls, glukose</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CASE STUDY ── -->
+<section class="casestudy">
+    <div class="container">
+        <div class="section-head">
+            <h2>Sådan tænkte jeg</h2>
+            <p>Fra klinisk problem til teknisk løsning</p>
+        </div>
+        <div class="casestudy-grid">
+            <div class="cs-item">
+                <span class="cs-label">Problem</span>
+                <p>Hypoglykæmi hos type 1-diabetikere rammer ofte uden varsel — under søvn, motion eller hverdag. Reaktiv behandling (spise sukker efter symptomerne opstår) er tit for sent.</p>
+            </div>
+            <div class="cs-item">
+                <span class="cs-label">Tilgang</span>
+                <p>Brug on-device ML til at forudsige, ikke bare vise, glukoseudviklingen. En enkelt model klarer ikke alle tidshorisonter godt — derfor en kaskade af 4 specialiserede modeller i stedet for én.</p>
+            </div>
+            <div class="cs-item">
+                <span class="cs-label">Udfordring</span>
+                <p>Rå insulin- og kulhydrat-input er svage features, fordi effekten er forsinket. Jeg modellerede i stedet aktivt insulin (IOB) og aktive kulhydrater (COB) via farmakokinetiske kerner (Walsh bilineær-model) for at fange den reelle fordøjelses- og optagelsestid.</p>
+            </div>
+            <div class="cs-item">
+                <span class="cs-label">Resultat</span>
+                <p>4 kalibrerede CoreML-modeller der kører under 50ms on-device, med et eskalerende alarmsystem med indbygget hysterese, så det ikke spammer med falske advarsler.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ── PRIVACY / COMPLIANCE ── -->
 <section class="compliance" id="privacy">
     <div class="container">
@@ -430,7 +609,7 @@
         <div class="footer-row">
             <p>© 2026 Eq Foresight — AI-drevet hypoglykæmi-forudsigelse</p>
             <div class="footer-links">
-                <a href="docs/architecture.md">Arkitektur</a>
+                <a href="#architecture">Arkitektur</a>
                 <a href="mailto:andersjuulmadsen1@gmail.com">Kontakt</a>
                 <a href="https://github.com/andyDTU/eq-foresight">GitHub</a>
             </div>
